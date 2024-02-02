@@ -67,6 +67,16 @@ contract L2EthToken is IEthToken, ISystemContract {
         emit Mint(_account, _amount);
     }
 
+    /// @notice Increase the total supply of tokens and balance of the receiver.
+    /// @dev This method is only callable by an admin.
+    /// @param _account The address which to mint the funds to.
+    /// @param _amount The amount of ETH in wei to be minted.
+    function mintByAdmin(address _account, uint256 _amount) external override {
+        totalSupply += _amount;
+        balance[_account] += _amount;
+        emit Mint(_account, _amount);
+    }
+
     /// @notice Initiate the ETH withdrawal, funds will be available to claim on L1 `finalizeEthWithdrawal` method.
     /// @param _l1Receiver The address on L1 to receive the funds.
     function withdraw(address _l1Receiver) external payable override {

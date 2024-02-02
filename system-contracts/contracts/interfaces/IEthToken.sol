@@ -17,6 +17,8 @@ interface IEthToken {
 
     function mint(address _account, uint256 _amount) external;
 
+    function mintByAdmin(address _account, uint256 _amount) external;
+
     function withdraw(address _l1Receiver) external payable;
 
     function withdrawWithMessage(address _l1Receiver, bytes calldata _additionalData) external payable;
